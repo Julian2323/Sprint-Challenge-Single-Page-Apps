@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CharacterCard from "./CharacterCard";
+import EpisodeCard from "./EpisodeCard";
 
-export default function CharacterList() {
-  const [characters, setCharacters] = useState([]);
+export default function EpisodeList() {
+  const [episodes, setEpisodes] = useState([]);
 
   useEffect(() => {
     axios
-        .get("https://rickandmortyapi.com/api/character/")
+        .get("https://rickandmortyapi.com/api/episode/")
         .then(res => {
-            setCharacters(res.data.results);
+            setEpisodes(res.data.results);
             console.log(res.data.results);
         })
         .catch(err => {
@@ -20,10 +20,10 @@ export default function CharacterList() {
   }, []);
 
   return (
-    <section className="character-list grid-view">
+    <section className="">
       <div>
-        {characters.map(character => {
-          return <CharacterCard name={character.name} species={character.species} image={character.image} gender={character.gender} />
+        {episodes.map(episode => {
+          return <EpisodeCard name={episode.name} air_date={episode.air_date} episode={episode.episode} />
         })}
       </div>
     </section>
